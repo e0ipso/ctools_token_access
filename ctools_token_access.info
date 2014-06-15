@@ -1,0 +1,9 @@
+name = CTools Token Access
+description = Provides a way to control access using a token.
+dependencies[] = ctools
+package = ctools
+core = 7.x
+
+; Files
+files[] = plugins/CToolsAccessBase.php
+files[] = plugins/CToolsAccessInterface.php
