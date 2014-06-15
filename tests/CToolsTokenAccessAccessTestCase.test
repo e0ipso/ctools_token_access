@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains CToolsTokenAccessAccessTestCase.
+ */
+
+class CToolsTokenAccessAccessTestCase extends DrupalWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Access',
+      'description' => 'Test the access with the token.',
+      'group' => 'CToolsTokenAccess',
+    );
+  }
+
+  /**
+   * Test access.
+   */
+  public function testAccess() {
+    $this->pass('Dummy test');
+  }
+
+}
