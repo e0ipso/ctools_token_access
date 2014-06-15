@@ -1,3 +1,5 @@
+![Travis status](https://api.travis-ci.org/mateu-aguilo-bosch/ctools_token_access.svg?branch=7.x-1.x)
+
 CTools Token Access
 ===================
 
