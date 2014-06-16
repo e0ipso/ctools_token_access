@@ -14,6 +14,9 @@ $plugin = array(
   'default' => array(
     'variable_name' => '',
     'parameter_name' => 'secret',
-    'expires_in' => '+1 week',
+    'expires_in' => array(
+      'interval' => '1',
+      'period' => 'week',
+    ),
   ),
 );
