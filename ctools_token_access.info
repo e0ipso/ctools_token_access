@@ -10,3 +10,4 @@ files[] = plugins/CToolsAccessInterface.php
 
 ; Tests
 files[] = tests/CToolsTokenAccessAccessTestCase.test
+files[] = tests/CToolsTokenAccessExpirableAccessTestCase.test
