@@ -21,7 +21,7 @@ Go to `admin/config/people/access-token`.
 
 ### 3. Configure the access plugin.
 Select the token to use and (if you want it to expire) select an expiration rule.
-![CTools Token Access](https://drupal.org/files/cta-configure.png)
+![CTools Token Access](https://drupal.org/files/cta-configure_0.png)
 
 ### 4. Done.
 ![CTools Token Access](https://drupal.org/files/cta-summary.png)

@@ -130,6 +130,7 @@ function ctools_token_access_test_default_access_token_export() {
   $token->api_version = 1;
   $token->name = 'cta-test';
   $token->value = '5R9vlMk6PbYnYPKbPmtoFsXjdoMzWaQjncxy9YPDLCY';
+  $token->updated = REQUEST_TIME;
   $export['cta-test'] = $token;
 
   return $export;
