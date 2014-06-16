@@ -1,0 +1,7 @@
+name = CTools Token Access Test
+description = Test module for CTools Token Access Test
+package = ctools
+core = 7.x
+
+dependencies[] = ctools_token_access
+dependencies[] = page_manager
