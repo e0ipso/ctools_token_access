@@ -12,12 +12,24 @@ class CToolsAccessTokenExportUI extends ctools_export_ui {
    */
   public static function form(&$form, &$form_state) {
     $token = $form_state['item'];
+    $form['random'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Random value'),
+      '#description' => t('Check this if you want to generate a random value automatically.'),
+      '#default_value' => empty($token->value),
+    );
+    $checkbox_state = array(   // action to take.
+      ':input[name=random]' => array('checked' => FALSE),
+    );
     $form['value'] = array(
       '#type' => 'textfield',
       '#title' => t('Variable value'),
       '#description' => t('This is the secret token that you will need to distribute.'),
       '#default_value' => $token->value,
-      '#suffix' => '<p><strong>' . t('Recommended: ') . '</strong>' . t('Leave the variable value empty to generate a random value.') . '</p>',
+      '#states' => array(
+        'visible' => $checkbox_state,
+        'required' => $checkbox_state,
+      ),
     );
   }
 
@@ -26,7 +38,7 @@ class CToolsAccessTokenExportUI extends ctools_export_ui {
    */
   public static function submit(&$form, &$form_state) {
     $values = &$form_state['values'];
-    if (empty($values['value'])) {
+    if (empty($values['value']) || !empty($values['random'])) {
       $values['value'] = static::generateToken();
     }
     // Set the updated timestamp.
@@ -36,7 +48,12 @@ class CToolsAccessTokenExportUI extends ctools_export_ui {
   /**
    * UI form validation.
    */
-  public static function validate(&$form, &$form_state) {}
+  public static function validate(&$form, &$form_state) {
+    $values = &$form_state['values'];
+    if (empty($values['value']) && empty($values['random'])) {
+      form_set_error('value', t('This field is required.'));
+    }
+  }
 
   /**
    * Generate a random access token.
