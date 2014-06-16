@@ -82,7 +82,7 @@ class CToolsExpirableTokenAccess extends CToolsTokenAccess {
 
     $expiration = new \DateTime();
     $expiration->setTimestamp($record->updated);
-    $expiration->modify(interval_format_interval($this->expires_in));
+    interval_apply_interval($expiration, $this->expires_in);
     return $expiration;
   }
 
