@@ -41,8 +41,9 @@ class CToolsTokenAccess extends CToolsAccessBase {
       return FALSE;
     }
     ctools_include('export');
-    $record_value = ctools_export_crud_load('access_token_export', $this->variable_name);
-    return $value === $record_value->value;
+    $record = ctools_export_crud_load('access_token_export', $this->variable_name);
+    $token_value = empty($record->value) ? NULL : $record->value;
+    return $value === $token_value;
   }
 
   /**

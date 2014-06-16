@@ -46,6 +46,13 @@ function ctools_token_access_schema() {
         'length' => '255',
         'description' => 'The value for the access token.',
       ),
+      'updated' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'UNIX timestamp when the token was last updated.',
+      )
     ),
     'primary key' => array('tid'),
     'unique keys' => array(

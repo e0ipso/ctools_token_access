@@ -25,13 +25,13 @@ before_script:
   - mysql -e 'create database cta'
   - php -d sendmail_path=`which true` `pear config-get php_dir`/drush/drush.php --yes core-quick-drupal --profile=testing --no-server --db-url=mysql://root:@127.0.0.1/cta --enable=simpletest ctools_token_access
 
-  # reference and enable restful in build site
+  # reference and enable ctools_token_access in build site
   - ln -s $(readlink -e $(cd -)) ctools_token_access/drupal/sites/all/modules/ctools_token_access
   - cd ctools_token_access/drupal
-  - drush --yes pm-enable restful restful_test
+  - drush --yes pm-enable ctools_token_access ctools_token_access_test
 
   # start a web server on port 8080, run in the background; wait for initialization
   - drush runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
 
-script: drush test-run CToolsTokenAccess --uri=http://127.0.0.1:8080
+script: drush test-run 'CTools Token Access' --uri=http://127.0.0.1:8080
