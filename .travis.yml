@@ -28,6 +28,7 @@ before_script:
   # reference and enable ctools_token_access in build site
   - ln -s $(readlink -e $(cd -)) ctools_token_access/drupal/sites/all/modules/ctools_token_access
   - cd ctools_token_access/drupal
+  - drush --yes dl date
   - drush --yes pm-enable ctools_token_access ctools_token_access_test
 
   # start a web server on port 8080, run in the background; wait for initialization
