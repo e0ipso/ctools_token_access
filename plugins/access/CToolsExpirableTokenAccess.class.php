@@ -49,7 +49,7 @@ class CToolsExpirableTokenAccess extends CToolsTokenAccess {
   public function settingsForm() {
     $form = parent::settingsForm();
     $form['settings']['expires_in'] = array(
-      '#type' => 'textfield',
+      '#type' => 'interval',
       '#title' => t('Expires in'),
       '#description' => t('Use a format procesable by date. Ex: "tomorrow", "+1 month", etc.'),
       '#default_value' => $this->expires_in,
@@ -82,7 +82,7 @@ class CToolsExpirableTokenAccess extends CToolsTokenAccess {
 
     $expiration = new \DateTime();
     $expiration->setTimestamp($record->updated);
-    $expiration->modify($this->expires_in);
+    interval_apply_interval($expiration, $this->expires_in);
     return $expiration;
   }
 

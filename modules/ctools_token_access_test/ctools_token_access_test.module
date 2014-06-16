@@ -81,7 +81,10 @@ function ctools_token_access_test_default_page_manager_pages() {
         'settings' => array(
           'parameter_name' => 'expirable',
           'variable_name' => 'cta-test',
-          'expires_in' => '+1 week',
+          'expires_in' => array(
+            'interval' => '1',
+            'period' => 'week',
+          ),
         ),
         'not' => FALSE,
       ),
