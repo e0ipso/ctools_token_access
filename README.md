@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mateu-aguilo-bosch/ctools_token_access.svg?branch=7.x-1.x)](https://travis-ci.org/mateu-aguilo-bosch/ctools_token_access)
+[![Build Status](https://travis-ci.org/mateu-aguilo-bosch/ctools_token_access.svg?branch=7.x-1.x)](https://travis-ci.org/mateu-aguilo-bosch/ctools_token_access) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mateu-aguilo-bosch/ctools_token_access/badges/quality-score.png?b=7.x-1.x)](https://scrutinizer-ci.com/g/mateu-aguilo-bosch/ctools_token_access/?branch=7.x-1.x)
 CTools Token Access
 ===================
 
