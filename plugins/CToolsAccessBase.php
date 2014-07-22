@@ -9,7 +9,7 @@ abstract class CToolsAccessBase implements CToolsAccessInterface {
   /**
    * Holds the CTools context.
    *
-   * @var \stdClass
+   * @var array
    */
   protected $context;
 
@@ -26,14 +26,14 @@ abstract class CToolsAccessBase implements CToolsAccessInterface {
   }
 
   /**
-   * @param \stdClass $context
+   * @param array $context
    */
   public function setContext($context) {
     $this->context = $context;
   }
 
   /**
-   * @return \stdClass
+   * @return array
    */
   public function getContext() {
     return $this->context;
