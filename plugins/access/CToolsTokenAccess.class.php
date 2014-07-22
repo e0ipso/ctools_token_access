@@ -106,7 +106,7 @@ class CToolsTokenAccess extends CToolsAccessBase {
    *
    * This will get the parameter name regardless of the HTTP method.
    *
-   * @param $parameter_name
+   * @param string $parameter_name
    *   Name of the parameter.
    *
    * @return string
