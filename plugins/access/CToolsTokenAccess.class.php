@@ -25,6 +25,15 @@ class CToolsTokenAccess extends CToolsAccessBase {
   protected $variable_name;
 
   /**
+   * The database record.
+   *
+   * The database record for the current token.
+   *
+   * @var string
+   */
+  protected $record;
+
+  /**
    * {@inheritdoc}
    */
   public function __construct($conf, $context) {
@@ -127,6 +136,34 @@ class CToolsTokenAccess extends CToolsAccessBase {
     }
     parse_str($input, $parameters);
     return empty($parameters[$parameter_name]) ? '' : $parameters[$parameter_name];
+  }
+
+  /**
+   * Gets the database record associated to the current token.
+   *
+   * @return object
+   *   The object for the current token.
+   */
+  protected function load() {
+    if (empty($this->record)) {
+      ctools_include('export');
+      $this->record = ctools_export_crud_load('access_token_export', $this->variable_name);
+    }
+    return $this->record;
+  }
+
+  /**
+   * Saves the current token to the database.
+   *
+   * @param object $record
+   *   The record to save. If NULL, the internal record will be saved.
+   */
+  protected function save($record = NULL) {
+    if (!empty($record)) {
+      $this->record = $record;
+    }
+    // Save the access token record.
+    ctools_export_crud_save('access_token_export', $this->record);
   }
 
 }

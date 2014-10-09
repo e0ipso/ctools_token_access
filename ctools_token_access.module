@@ -18,20 +18,23 @@ function ctools_token_access_ctools_plugin_directory($module, $plugin) {
  * Implements hook_ctools_plugin_post_alter().
  */
 function ctools_token_access_ctools_plugin_post_alter(&$plugin, &$info) {
-  // Add default options for access plugins that implement the interface.
-  if ($info['type'] == 'access') {
-    if ($plugin['name'] == 'token_access' || $plugin['name'] == 'expirable_token_access') {
-      // If the class has not been loaded, then load it.
-      if (!class_exists('CToolsTokenAccess')) {
-        // All subclasses depend on CToolsTokenAccess to be loaded first.
-        $directory = ctools_token_access_ctools_plugin_directory('ctools', 'access');
-        module_load_include('class.php', 'ctools_token_access', $directory . '/CToolsTokenAccess');
-      }
-      if (!class_exists($plugin['class'])) {
-        $directory = ctools_token_access_ctools_plugin_directory('ctools', 'access');
-        module_load_include('class.php', 'ctools_token_access', $directory . '/' . $plugin['class']);
-      }
+  // Add default options for access plugins of type cta.
+  if ($info['type'] == 'access' && !empty($plugin['access type']) && $plugin['access type'] == 'cta') {
+    // If the class has not been loaded, then load it.
+    if (!class_exists('CToolsTokenAccess')) {
+      // All subclasses depend on CToolsTokenAccess to be loaded first.
+      $directory = ctools_token_access_ctools_plugin_directory('ctools', 'access');
+      module_load_include('class.php', 'ctools_token_access', $directory . '/CToolsTokenAccess');
     }
+    if (!class_exists($plugin['class'])) {
+      $directory = ctools_token_access_ctools_plugin_directory('ctools', 'access');
+      module_load_include('class.php', 'ctools_token_access', $directory . '/' . $plugin['class']);
+    }
+    $plugin += array(
+      'callback' => 'ctools_token_access_access_callback',
+      'settings form' => 'ctools_token_access_settings_form',
+      'summary' => 'ctools_token_access_summary',
+    );
   }
 }
 

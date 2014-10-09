@@ -52,7 +52,14 @@ function ctools_token_access_schema() {
         'not null' => TRUE,
         'default' => 0,
         'description' => 'UNIX timestamp when the token was last updated.',
-      )
+      ),
+      'data' => array(
+        'type' => 'blob',
+        'not null' => FALSE,
+        'size' => 'big',
+        'serialize' => TRUE,
+        'description' => 'A serialized array of name value pairs that are related to the token. This is a bin that may be used by any token access plugin to store additional data about the token.',
+      ),
     ),
     'primary key' => array('tid'),
     'unique keys' => array(
@@ -60,4 +67,13 @@ function ctools_token_access_schema() {
     ),
   );
   return $schema;
+}
+
+/**
+ * Adds the data field.
+ */
+function ctools_token_access_update_7100(&$sandbox) {
+  $schema = ctools_token_access_schema();
+  $field_schema = $schema['access_token_export']['fields']['data'];
+  db_add_field('access_token_export', 'data', $field_schema);
 }

@@ -115,6 +115,52 @@ function ctools_token_access_test_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['ctools_token_expirable_access_test_page'] = $page;
 
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'ctools_token_x_times_access_test_page';
+  $page->task = 'page';
+  $page->admin_title = 'CTools Token X Times Access test page';
+  $page->admin_description = '';
+  $page->path = 'cta-x-times-test';
+  $page->access = array(
+    'plugins' => array(
+      0 => array(
+        'name' => 'x_times_use_token_access',
+        'settings' => array(
+          'parameter_name' => 'secret',
+          'variable_name' => 'cta-test',
+          'max_hits' => '1',
+        ),
+        'not' => FALSE,
+      ),
+    ),
+    'logic' => 'and',
+  );
+  $page->menu = array();
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_ctools_token_x_times_access_test_page_http_response';
+  $handler->task = 'page';
+  $handler->subtask = 'ctools_token_x_times_access_test_page';
+  $handler->handler = 'http_response';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'ctools_token_x_times_access_test_page',
+    'contexts' => array(),
+    'relationships' => array(),
+    'code' => '410',
+    'destination' => '',
+  );
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['ctools_token_x_times_access_test_page'] = $page;
+
   return $pages;
 
 }

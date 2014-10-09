@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Contains CToolsTokenAccessAccessTestCase.
+ */
+
+class CToolsTokenAccessXTimesAccessTestCase extends DrupalWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'X Times Access',
+      'description' => 'Test the access with the token and usage rules.',
+      'group' => 'CTools Token Access',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('ctools_token_access_test');
+  }
+
+  /**
+   * Test access.
+   */
+  public function testAccess() {
+    $code = $this->drupalGetResponseCode('cta-x-times-test', array('query' => array(
+      'token' => '5R9vlMk6PbYnYPKbPmtoFsXjdoMzWaQjncxy9YPDLCY',
+    )));
+    $this->assertEqual($code, 410, 'Access granted the first time.');
+
+    // Hit a second time.
+    $code = $this->drupalGetResponseCode('cta-x-times-test', array('query' => array(
+      'token' => '5R9vlMk6PbYnYPKbPmtoFsXjdoMzWaQjncxy9YPDLCY',
+    )));
+    $this->assertEqual($code, 403, 'Access denied the second time.');
+  }
+
+  /**
+   * Return the response code for a GET request.
+   */
+  public function drupalGetResponseCode($url, $options = array()) {
+    $this->drupalGet($url, $options);
+    return curl_getinfo($this->curlHandle, CURLINFO_HTTP_CODE);
+  }
+
+}

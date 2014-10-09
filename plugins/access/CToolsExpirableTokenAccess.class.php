@@ -77,8 +77,7 @@ class CToolsExpirableTokenAccess extends CToolsTokenAccess {
    *   The object for the expiration.
    */
   protected function getExpirationObject() {
-    ctools_include('export');
-    $record = ctools_export_crud_load('access_token_export', $this->variable_name);
+    $record = $this->load();
 
     $expiration = new \DateTime();
     $expiration->setTimestamp($record->updated);
