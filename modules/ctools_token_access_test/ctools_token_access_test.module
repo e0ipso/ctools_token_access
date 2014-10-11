@@ -130,7 +130,7 @@ function ctools_token_access_test_default_page_manager_pages() {
         'settings' => array(
           'parameter_name' => 'counter',
           'variable_name' => 'cta-test',
-          'max_hits' => '1',
+          'max_hits' => '4',
         ),
         'not' => FALSE,
       ),

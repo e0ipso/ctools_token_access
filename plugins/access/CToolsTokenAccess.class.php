@@ -29,7 +29,7 @@ class CToolsTokenAccess extends CToolsAccessBase {
    *
    * The database record for the current token.
    *
-   * @var string
+   * @var object
    */
   protected $record;
 
