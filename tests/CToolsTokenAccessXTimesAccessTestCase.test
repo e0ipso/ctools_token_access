@@ -24,13 +24,13 @@ class CToolsTokenAccessXTimesAccessTestCase extends DrupalWebTestCase {
    */
   public function testAccess() {
     $code = $this->drupalGetResponseCode('cta-x-times-test', array('query' => array(
-      'token' => '5R9vlMk6PbYnYPKbPmtoFsXjdoMzWaQjncxy9YPDLCY',
+      'counter' => '5R9vlMk6PbYnYPKbPmtoFsXjdoMzWaQjncxy9YPDLCY',
     )));
     $this->assertEqual($code, 410, 'Access granted the first time.');
 
     // Hit a second time.
     $code = $this->drupalGetResponseCode('cta-x-times-test', array('query' => array(
-      'token' => '5R9vlMk6PbYnYPKbPmtoFsXjdoMzWaQjncxy9YPDLCY',
+      'counter' => '5R9vlMk6PbYnYPKbPmtoFsXjdoMzWaQjncxy9YPDLCY',
     )));
     $this->assertEqual($code, 403, 'Access denied the second time.');
   }

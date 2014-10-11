@@ -128,7 +128,7 @@ function ctools_token_access_test_default_page_manager_pages() {
       0 => array(
         'name' => 'x_times_use_token_access',
         'settings' => array(
-          'parameter_name' => 'secret',
+          'parameter_name' => 'counter',
           'variable_name' => 'cta-test',
           'max_hits' => '1',
         ),
@@ -152,7 +152,7 @@ function ctools_token_access_test_default_page_manager_pages() {
   $handler->handler = 'http_response';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'ctools_token_x_times_access_test_page',
+    'title' => 'HTTP response code',
     'contexts' => array(),
     'relationships' => array(),
     'code' => '410',
